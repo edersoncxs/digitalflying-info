@@ -1,0 +1,23 @@
+{
+  "versao": 1,
+  "atualizado": "2026-11-06",
+  "empresa": "Digital Flying",
+  "slogan": "Soluções Digitais Inteligentes",
+  "contato": {
+    "email": "ederson.cxs@gmail.com",
+    "whatsapp": "5548991279653",
+    "site": "https://digitalflying.netlify.app/"
+  },
+  "chamada": {
+    "titulo": "Precisa de algo sob medida?",
+    "texto": "A Digital Flying instala, configura e personaliza o sistema para a sua loja: identidade visual, site com a sua cara e novas funcionalidades sob demanda."
+  },
+  "mensagemWhatsapp": "Olá, Digital Flying! Uso o {app} e gostaria de falar sobre personalização / novas funcionalidades.",
+  "pix": {
+    "chave": "+5548991279653",
+    "nome": "Ederson do Santos",
+    "cidade": "Caxias do Sul",
+    "banco": "Banco Inter",
+    "texto": "O {app} é gratuito. Se ele ajuda o seu negócio, contribua com qualquer valor pelo PIX. É voluntário: o app continua completo."
+  }
+}
