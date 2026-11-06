@@ -14,7 +14,7 @@ Informações da Digital Flying lidas por **todos os apps** (contatos, PIX de co
 
 ## Envio de mensagens (`envio`)
 
-- `envio.email`: endereço que recebe o formulário de contato dos apps e entrega no e-mail da Digital Flying. Hoje: FormSubmit (gratuito, sem senha no app).
-  - Na **primeira** mensagem, o FormSubmit manda um e-mail de ativação para `ederson.cxs@gmail.com`: clicar em "Activate Form". Depois disso as mensagens chegam direto.
-  - Depois de ativar, o FormSubmit mostra um endereço "aleatório" (ex.: `https://formsubmit.co/ajax/abc123...`): pode trocar aqui para não expor o e-mail no link.
-  - Para usar outro serviço (ou um endpoint próprio em digitalflying.com.br), é só trocar a URL aqui.
+- `envio.email`: serviço que recebe o formulário de contato dos apps e entrega no e-mail da Digital Flying. O app não guarda senha de e-mail.
+- Atual: **Web3Forms** (`https://api.web3forms.com/submit`, gratuito). `envio.chave` = "Access Key" criada em https://web3forms.com com o e-mail ederson.cxs@gmail.com (a chave é pública por natureza: feita para ficar em sites/apps).
+- O FormSubmit foi descartado em 2026-11-06: não respondia a partir da rede do desenvolvedor.
+- Para trocar de serviço (ou usar um endpoint próprio em digitalflying.com.br), basta mudar estes campos.
