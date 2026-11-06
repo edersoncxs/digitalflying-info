@@ -19,5 +19,8 @@
     "cidade": "Caxias do Sul",
     "banco": "Banco Inter",
     "texto": "O {app} é gratuito. Se ele ajuda o seu negócio, contribua com qualquer valor pelo PIX. É voluntário: o app continua completo."
+  },
+  "envio": {
+    "email": "https://formsubmit.co/ajax/ederson.cxs@gmail.com"
   }
 }
