@@ -18,3 +18,8 @@ Informações da Digital Flying lidas por **todos os apps** (contatos, PIX de co
 - Atual: **Web3Forms** (`https://api.web3forms.com/submit`, gratuito). `envio.chave` = "Access Key" criada em https://web3forms.com com o e-mail ederson.cxs@gmail.com (a chave é pública por natureza: feita para ficar em sites/apps).
 - O FormSubmit foi descartado em 2026-11-06: não respondia a partir da rede do desenvolvedor.
 - Para trocar de serviço (ou usar um endpoint próprio em digitalflying.com.br), basta mudar estes campos.
+
+## Conteúdo de exemplo (`exemplos/`)
+
+- `exemplos/delivery/<chave>.jpg`: fotos do cardápio de exemplo do DF Delivery (botão "Instalar conteúdo de exemplo" no app). Licença livre (CC0/domínio público) — créditos em `exemplos/delivery/CREDITOS.md`.
+- Para trocar uma foto, substitua o arquivo mantendo o nome (a chave). Produtos sem arquivo (refrigerante, água) entram sem foto.
