@@ -23,3 +23,8 @@ Informações da Digital Flying lidas por **todos os apps** (contatos, PIX de co
 
 - `exemplos/delivery/<chave>.jpg`: fotos do cardápio de exemplo do DF Delivery (botão "Instalar conteúdo de exemplo" no app). Licença livre (CC0/domínio público) — créditos em `exemplos/delivery/CREDITOS.md`.
 - Cópia de referência: as fotos vão **embutidas no app** (`Delivery/src-tauri/recursos/exemplo/`); para trocar, substitua lá e aqui mantendo o nome (a chave).
+
+## Sem depender de terceiros (quando houver hospedagem)
+
+- `servidor/contato.php`: endpoint próprio da Digital Flying para os apps mandarem e-mail. Publicar em `digitalflying.com.br/app/contato.php`, ajustar o `$CONFIG` (senha só no servidor) e trocar `envio.email` no JSON para essa URL (`chave` vazia). Daí os apps deixam de usar o Web3Forms.
+- Hoje: o app tenta o canal escolhido e, se falhar, o outro (Telegram da Digital ⇄ e-mail), então a mensagem sempre chega.
