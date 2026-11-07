@@ -22,4 +22,4 @@ Informações da Digital Flying lidas por **todos os apps** (contatos, PIX de co
 ## Conteúdo de exemplo (`exemplos/`)
 
 - `exemplos/delivery/<chave>.jpg`: fotos do cardápio de exemplo do DF Delivery (botão "Instalar conteúdo de exemplo" no app). Licença livre (CC0/domínio público) — créditos em `exemplos/delivery/CREDITOS.md`.
-- Para trocar uma foto, substitua o arquivo mantendo o nome (a chave). Produtos sem arquivo (refrigerante, água) entram sem foto.
+- Cópia de referência: as fotos vão **embutidas no app** (`Delivery/src-tauri/recursos/exemplo/`); para trocar, substitua lá e aqui mantendo o nome (a chave).

@@ -17,3 +17,5 @@ Fotos com licença livre (CC0 / domínio público), encontradas pelo Openverse (
 | suco.jpg | stocks-1084 | Artem Beliaikin | CC0 | https://www.flickr.com/photos/157635012@N07/28164605967 |
 | brownie.jpg | Turtle Bar - Midnight Kitchen Ice Cream Sandwiches LightRoom corrected 20060720-02 | roland | CC0 | https://www.flickr.com/photos/35034347371@N01/195210419 |
 | pudim.jpg |  | — | CC0 | https://www.rawpixel.com/image/5960607/free-public-domain-cc0-photo |
+| refrigerante.jpg | Goblets Aglow | moonjazz | PDM | https://www.flickr.com/photos/8398907@N02/2473991201 |
+| agua.jpg | Fruit lemonades | freestocks.org | CC0 | https://www.flickr.com/photos/135396164@N05/43522180855 |
