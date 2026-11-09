@@ -12,19 +12,23 @@ Informações da Digital Flying lidas por **todos os apps** (contatos, PIX de co
 - `{app}` nos textos é trocado pelo nome do app.
 - Manter o campo `versao` em 1 enquanto o formato não mudar.
 
-## Envio de mensagens (`envio`)
+## Mensagens dos apps para a Digital Flying
 
-- `envio.email`: serviço que recebe o formulário de contato dos apps e entrega no e-mail da Digital Flying. O app não guarda senha de e-mail.
-- Atual: **Web3Forms** (`https://api.web3forms.com/submit`, gratuito). `envio.chave` = "Access Key" criada em https://web3forms.com com o e-mail ederson.cxs@gmail.com (a chave é pública por natureza: feita para ficar em sites/apps).
-- O FormSubmit foi descartado em 2026-11-06: não respondia a partir da rede do desenvolvedor.
-- Para trocar de serviço (ou usar um endpoint próprio em digitalflying.com.br), basta mudar estes campos.
+- Desde 2026-11-07 **sem serviços de terceiros**: o botão "Mensagem" dos apps envia direto para o Telegram da Digital (bot com token/chat definidos na compilação do app). WhatsApp e e-mail ficam só como links (`wa.me` e `mailto:`) com a mensagem pronta, além de copiar número/endereço.
+- O campo `envio` (Web3Forms) foi removido do JSON; apps antigos que ainda o lêem simplesmente o ignoram.
 
 ## Conteúdo de exemplo (`exemplos/`)
 
 - `exemplos/delivery/<chave>.jpg`: fotos do cardápio de exemplo do DF Delivery (botão "Instalar conteúdo de exemplo" no app). Licença livre (CC0/domínio público) — créditos em `exemplos/delivery/CREDITOS.md`.
 - Cópia de referência: as fotos vão **embutidas no app** (`Delivery/src-tauri/recursos/exemplo/`); para trocar, substitua lá e aqui mantendo o nome (a chave).
 
-## Sem depender de terceiros (quando houver hospedagem)
+## Obsoleto
 
-- `servidor/contato.php`: endpoint próprio da Digital Flying para os apps mandarem e-mail. Publicar em `digitalflying.com.br/app/contato.php`, ajustar o `$CONFIG` (senha só no servidor) e trocar `envio.email` no JSON para essa URL (`chave` vazia). Daí os apps deixam de usar o Web3Forms.
-- Hoje: o app tenta o canal escolhido e, se falhar, o outro (Telegram da Digital ⇄ e-mail), então a mensagem sempre chega.
+- `servidor/contato.php`: endpoint de e-mail próprio, pensado para substituir o Web3Forms. Não é mais usado (as mensagens vão pelo Telegram). Pode ser apagado.
+
+## Atualizações dos apps (`atualizacoes`)
+
+- `atualizacoes.delivery`: `{ versao, data, notas[], linux, windows, pagina, importante }`. Os apps consultam este arquivo ao abrir e a cada 6 h; se `versao` for maior que a instalada, avisam no Início e em Sobre com as notas e o "como atualizar".
+- **Downloads com nome fixo** nas Releases deste repositório: `df-delivery_amd64.deb` (Linux) e `df-delivery_x64-setup.exe` (Windows). O link `.../releases/latest/download/<arquivo>` sempre aponta para a versão mais nova.
+- **Publicar uma versão nova:** (1) criar a Release `vX.Y.Z` com os dois arquivos (mesmos nomes); (2) só depois mudar `versao`, `data` e `notas` aqui.
+- **Testar o aviso sem publicar:** abrir o app com `DF_INFO_FONTE=<url de um JSON de teste>`.

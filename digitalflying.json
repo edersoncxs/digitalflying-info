@@ -1,6 +1,6 @@
 {
   "versao": 1,
-  "atualizado": "2026-11-06",
+  "atualizado": "2026-11-08",
   "empresa": "Digital Flying",
   "slogan": "Soluções Digitais Inteligentes",
   "contato": {
@@ -15,13 +15,26 @@
   "mensagemWhatsapp": "Olá, Digital Flying! Uso o {app} e gostaria de falar sobre personalização / novas funcionalidades.",
   "pix": {
     "chave": "+5548991279653",
-    "nome": "Ederson do Santos",
+    "nome": "Ederson dos Santos",
     "cidade": "Caxias do Sul",
     "banco": "Banco Inter",
     "texto": "O {app} é gratuito. Se ele ajuda o seu negócio, contribua com qualquer valor pelo PIX. É voluntário: o app continua completo."
   },
-  "envio": {
-    "email": "https://api.web3forms.com/submit",
-    "chave": "7870fb50-55dc-4183-a6d5-6a9dc4f7183c"
+  "impressoras": {
+    "testadas": [],
+    "texto": "O {app} usa o padrão ESC/POS, o das impressoras térmicas de 58 e 80 mm (Epson, Elgin, Bematech, Daruma, Tanca, Knup e genéricas). Modelos da lista foram testados pela Digital Flying; os outros devem funcionar, mas por conta e risco — use a página de teste para conferir acentos e corte."
+  },
+  "atualizacoes": {
+    "delivery": {
+      "versao": "1.0.0",
+      "data": "2026-11-08",
+      "notas": [
+        "Primeira versão pública (Linux)."
+      ],
+      "linux": "https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb",
+      "windows": "",
+      "pagina": "https://github.com/edersoncxs/digitalflying-info/releases/latest",
+      "importante": false
+    }
   }
 }
