@@ -1,0 +1,89 @@
+# Testa os instaladores publicados na Release mais nova, em máquinas limpas, e guarda prints da tela.
+# Rodar: aba Actions → "Testes dos instaladores" → Run workflow (roda sozinho também a cada Release publicada).
+name: Testes dos instaladores
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+
+env:
+  BASE: https://github.com/${{ github.repository }}/releases/latest/download
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Baixar e instalar (silencioso)
+        shell: pwsh
+        run: |
+          Invoke-WebRequest "$env:BASE/df-delivery_x64-setup.exe" -OutFile setup.exe
+          Start-Process .\setup.exe -ArgumentList '/S' -Wait
+          $exe = Get-ChildItem "$env:LOCALAPPDATA","$env:ProgramFiles" -Recurse -Filter 'digital-flying-delivery.exe' -ErrorAction SilentlyContinue | Select-Object -First 1
+          if (-not $exe) { throw 'Executável não encontrado após instalar' }
+          "Instalado em: $($exe.FullName)"
+          "EXE=$($exe.FullName)" >> $env:GITHUB_ENV
+          Get-ChildItem "$env:APPDATA\Microsoft\Windows\Start Menu\Programs" -Recurse -Filter '*.lnk' | Where-Object Name -like '*Delivery*' | ForEach-Object { "Atalho: $($_.FullName)" }
+      - name: Abrir o app e tirar prints
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory prints | Out-Null
+          Add-Type -AssemblyName System.Windows.Forms, System.Drawing
+          function Print($n) { $b = [System.Windows.Forms.Screen]::PrimaryScreen.Bounds; $bmp = New-Object System.Drawing.Bitmap $b.Width, $b.Height; [System.Drawing.Graphics]::FromImage($bmp).CopyFromScreen($b.Location, [System.Drawing.Point]::Empty, $b.Size); $bmp.Save("prints\$n.png") }
+          $p = Start-Process $env:EXE -PassThru
+          Start-Sleep 12; Print 'windows-1-abertura'
+          Start-Sleep 15; Print 'windows-2-depois-30s'
+          if ($p.HasExited) { throw "O app fechou sozinho (código $($p.ExitCode))" }
+          "App continua aberto (PID $($p.Id), memória $([math]::Round($p.WorkingSet64/1MB)) MB)"
+          $db = Get-ChildItem "$env:APPDATA","$env:LOCALAPPDATA" -Recurse -Filter 'delivery.sqlite' -ErrorAction SilentlyContinue | Select-Object -First 1
+          if ($db) { "Banco criado: $($db.FullName) ($($db.Length) bytes)" } else { throw 'Banco de dados não foi criado' }
+          Stop-Process $p -Force
+      - name: Desinstalar
+        shell: pwsh
+        run: |
+          $u = Get-ChildItem (Split-Path $env:EXE) -Filter 'uninstall*.exe' | Select-Object -First 1
+          if ($u) { Start-Process $u.FullName -ArgumentList '/S' -Wait; Start-Sleep 5; if (Test-Path $env:EXE) { throw 'Desinstalar não removeu o app' } else { 'Desinstalou certinho' } } else { 'Desinstalador não encontrado' }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with: { name: prints-windows, path: prints/ }
+
+  linux:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - { nome: ubuntu, imagem: 'ubuntu:24.04', arquivo: df-delivery_amd64.deb }
+          - { nome: debian, imagem: 'debian:12', arquivo: df-delivery_amd64.deb }
+          - { nome: fedora, imagem: 'fedora:41', arquivo: df-delivery.x86_64.rpm }
+    runs-on: ubuntu-latest
+    container: ${{ matrix.imagem }}
+    steps:
+      - name: Instalar o pacote numa instalação limpa (puxando as dependências)
+        run: |
+          if command -v apt-get >/dev/null; then
+            export DEBIAN_FRONTEND=noninteractive
+            apt-get update -qq && apt-get install -y -qq curl ca-certificates >/dev/null
+            curl -fsSL -o /tmp/pacote "$BASE/${{ matrix.arquivo }}" && mv /tmp/pacote /tmp/${{ matrix.arquivo }}
+            apt-get install -y /tmp/${{ matrix.arquivo }} | tail -3
+            apt-get install -y -qq xvfb imagemagick dbus-x11 >/dev/null
+          else
+            curl -fsSL -o /tmp/${{ matrix.arquivo }} "$BASE/${{ matrix.arquivo }}"
+            dnf install -y /tmp/${{ matrix.arquivo }} | tail -3
+            dnf install -y -q xorg-x11-server-Xvfb ImageMagick dbus-x11 >/dev/null
+          fi
+          B=$(command -v digital-flying-delivery) || { echo 'Executável não instalado'; exit 1; }
+          echo "Instalado em $B"; ls /usr/share/applications | grep -i delivery
+          if ldd "$B" | grep 'not found'; then echo 'FALTAM BIBLIOTECAS'; exit 1; else echo 'Todas as bibliotecas encontradas'; fi
+      - name: Abrir o app e tirar prints
+        run: |
+          mkdir -p prints; export DISPLAY=:99 HOME=/root
+          Xvfb :99 -screen 0 1366x768x24 & sleep 2
+          dbus-launch digital-flying-delivery > app.log 2>&1 & P=$!
+          sleep 15; import -window root prints/${{ matrix.nome }}-1-abertura.png
+          sleep 15; import -window root prints/${{ matrix.nome }}-2-depois-30s.png
+          if kill -0 $P 2>/dev/null; then echo 'App continua aberto'; else echo 'O app fechou sozinho:'; cat app.log; exit 1; fi
+          find /root/.local/share -name delivery.sqlite | grep -q . && echo 'Banco criado' || { echo 'Banco não criado'; cat app.log; exit 1; }
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prints-${{ matrix.nome }}
+          path: prints/
