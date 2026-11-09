@@ -26,15 +26,16 @@
   },
   "atualizacoes": {
     "delivery": {
-      "versao": "1.0.0",
+      "versao": "1.0.1",
       "data": "2026-11-08",
       "notas": [
-        "Primeira versão pública (Linux)."
+        "TESTE do aviso de atualização (será desfeito em seguida).",
+        "Se você está vendo isto, a detecção de versão nova funciona."
       ],
       "linux": "https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb",
       "windows": "",
       "pagina": "https://github.com/edersoncxs/digitalflying-info/releases/latest",
-      "importante": false
+      "importante": true
     }
   }
 }
