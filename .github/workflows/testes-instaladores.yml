@@ -52,6 +52,9 @@ jobs:
       matrix:
         include:
           - { nome: ubuntu, imagem: 'ubuntu:24.04', arquivo: df-delivery_amd64.deb }
+          - { nome: mint21, imagem: 'linuxmintd/mint21.3-amd64', arquivo: df-delivery_amd64.deb }
+          - { nome: mint22, imagem: 'linuxmintd/mint22-amd64', arquivo: df-delivery_amd64.deb }
+          - { nome: ubuntu2204, imagem: 'ubuntu:22.04', arquivo: df-delivery_amd64.deb }
           - { nome: debian, imagem: 'debian:12', arquivo: df-delivery_amd64.deb }
           - { nome: fedora, imagem: 'fedora:41', arquivo: df-delivery.x86_64.rpm }
     runs-on: ubuntu-latest
