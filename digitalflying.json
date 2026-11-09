@@ -39,5 +39,6 @@
       "importante": true
     }
   },
-  "estatisticas": "https://dfdelivery.netlify.app/api/app"
+  "estatisticas": "https://dfdelivery.netlify.app/api/app",
+  "fundadores": "https://dfdelivery.netlify.app/api/fundador"
 }
