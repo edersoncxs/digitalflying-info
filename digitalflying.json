@@ -36,5 +36,6 @@
       "pagina": "https://github.com/edersoncxs/digitalflying-info/releases/latest",
       "importante": false
     }
-  }
+  },
+  "estatisticas": "https://dfdelivery.netlify.app/api/app"
 }
