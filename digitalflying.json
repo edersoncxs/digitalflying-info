@@ -29,10 +29,10 @@
       "versao": "1.0.0",
       "data": "2026-11-08",
       "notas": [
-        "Primeira versão pública (Linux)."
+        "Primeira versão pública (Linux e Windows)."
       ],
       "linux": "https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb",
-      "windows": "",
+      "windows": "https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_x64-setup.exe",
       "pagina": "https://github.com/edersoncxs/digitalflying-info/releases/latest",
       "importante": false
     }

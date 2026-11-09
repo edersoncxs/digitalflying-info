@@ -29,6 +29,7 @@ Informações da Digital Flying lidas por **todos os apps** (contatos, PIX de co
 ## Atualizações dos apps (`atualizacoes`)
 
 - `atualizacoes.delivery`: `{ versao, data, notas[], linux, windows, pagina, importante }`. Os apps consultam este arquivo ao abrir e a cada 6 h; se `versao` for maior que a instalada, avisam no Início e em Sobre com as notas e o "como atualizar".
-- **Downloads com nome fixo** nas Releases deste repositório: `df-delivery_amd64.deb` (Linux) e `df-delivery_x64-setup.exe` (Windows). O link `.../releases/latest/download/<arquivo>` sempre aponta para a versão mais nova.
-- **Publicar uma versão nova:** (1) criar a Release `vX.Y.Z` com os dois arquivos (mesmos nomes); (2) só depois mudar `versao`, `data` e `notas` aqui.
+- **Downloads com nome fixo** nas Releases deste repositório: `df-delivery_amd64.deb` (Ubuntu/Debian), `df-delivery.x86_64.rpm` (Fedora/openSUSE, em teste) e `df-delivery_x64-setup.exe` (Windows).
+- **Site oficial do DF Delivery:** https://dfdelivery.netlify.app/ (Netlify, projeto `dfdelivery`). O link `.../releases/latest/download/<arquivo>` sempre aponta para a versão mais nova.
+- **Publicar uma versão nova:** (1) criar a Release `vX.Y.Z` com os três arquivos (mesmos nomes); (2) só depois mudar `versao`, `data` e `notas` aqui.
 - **Testar o aviso sem publicar:** abrir o app com `DF_INFO_FONTE=<url de um JSON de teste>`.
