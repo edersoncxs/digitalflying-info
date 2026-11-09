@@ -11,7 +11,8 @@
 
 <p align="center">
   <a href="https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_x64-setup.exe"><b>⬇ Baixar para Windows</b></a> ·
-  <a href="https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb"><b>⬇ Baixar para Linux</b></a> ·
+  <a href="https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb"><b>⬇ Ubuntu / Mint / Debian (.deb)</b></a> ·
+  <a href="https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery.x86_64.rpm"><b>⬇ Fedora / openSUSE (.rpm)</b></a> ·
   <a href="https://dfdelivery.netlify.app/"><b>Conhecer o site</b></a>
 </p>
 
@@ -84,8 +85,8 @@
 | Sistema | Baixar | Como instalar |
 |---|---|---|
 | **Windows 10 e 11** | [df-delivery_x64-setup.exe](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_x64-setup.exe) | Dois cliques e **Instalar**. Se aparecer *"O Windows protegeu o computador"*, clique em **Mais informações → Executar assim mesmo**. |
-| **Ubuntu, Linux Mint e derivados** | [df-delivery_amd64.deb](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb) | Dois cliques e **Instalar**, ou no terminal: `sudo apt install ./df-delivery_amd64.deb` |
-| **Fedora, openSUSE e derivados** *(em teste)* | [df-delivery.x86_64.rpm](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery.x86_64.rpm) | `sudo dnf install ./df-delivery.x86_64.rpm` |
+| **Ubuntu 22.04+, Linux Mint 21+, Debian 12+ e derivados** | [df-delivery_amd64.deb](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb) | Dois cliques e **Instalar**, ou no terminal: `sudo apt install ./df-delivery_amd64.deb` |
+| **Fedora, openSUSE e derivados** | [df-delivery.x86_64.rpm](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery.x86_64.rpm) | `sudo dnf install ./df-delivery.x86_64.rpm` |
 
 **Para o site de pedidos** precisas de uma hospedagem comum com PHP 8.1 ou mais (o banco pode ser SQLite, sem configurar nada, ou MySQL). O app instala o site sozinho; é só informar os dados da hospedagem.
 
