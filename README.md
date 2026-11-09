@@ -90,6 +90,12 @@
 
 **Para o site de pedidos** precisas de uma hospedagem comum com PHP 8.1 ou mais (o banco pode ser SQLite, sem configurar nada, ou MySQL). O app instala o site sozinho; é só informar os dados da hospedagem.
 
+**Desinstalar:** Windows → Configurações → Aplicativos → DF Delivery → Desinstalar. Ubuntu/Mint/Debian → `sudo apt remove df-delivery`. Fedora → `sudo dnf remove df-delivery`. Os dados da loja ficam guardados para quando reinstalar.
+
+**Apagar tudo e começar do zero** (apaga pedidos, cardápio, fotos e backups — faça um backup antes em Sistema → Preferências e backup):
+- Windows: desinstale e apague a pasta `%APPDATA%\br.com.digitalflying.Delivery`
+- Linux: `sudo apt purge df-delivery` (Fedora: `sudo dnf remove df-delivery`) e `rm -rf ~/.local/share/br.com.digitalflying.Delivery ~/.config/autostart/DF\ Delivery.desktop`
+
 **Atualizações:** o app avisa sozinho quando sai versão nova, mostra o que mudou e como atualizar. Teus dados são preservados. Todas as versões ficam em [Releases](https://github.com/edersoncxs/digitalflying-info/releases).
 
 ---
