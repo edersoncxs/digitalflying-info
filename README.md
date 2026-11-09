@@ -1,35 +1,115 @@
-# DigitalFlyingInfo
+<p align="center">
+  <img src="divulgacao/capa.png" alt="DF Delivery — sistema de delivery grátis e sem comissão" width="100%">
+</p>
 
-Informações da Digital Flying lidas por **todos os apps** (contatos, PIX de contribuição, chamada comercial).
+<h1 align="center">DF Delivery</h1>
 
-- Publicar este arquivo num repositório **público** do GitHub: `edersoncxs/digitalflying-info`, branch `main`.
-- Os apps buscam, nesta ordem:
-  1. `https://digitalflying.com.br/app/info/digitalflying.json` (quando o domínio estiver no ar)
-  2. `https://raw.githubusercontent.com/edersoncxs/digitalflying-info/main/digitalflying.json`
-  3. última versão salva no computador
-  4. versão embutida no app (cópia em `Delivery/src-tauri/recursos/digitalflying.json`)
-- Para mudar um contato ou a chave PIX: editar o JSON no GitHub (e no domínio, se houver). Cada instalação atualiza sozinha ao abrir.
-- `{app}` nos textos é trocado pelo nome do app.
-- Manter o campo `versao` em 1 enquanto o formato não mudar.
+<p align="center">
+  <b>Teu delivery grátis. Tua marca. Zero comissão.</b><br>
+  App para o computador da loja que toca alarme e imprime cada pedido, mais o site de pedidos com a tua cara.
+</p>
 
-## Mensagens dos apps para a Digital Flying
+<p align="center">
+  <a href="https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_x64-setup.exe"><b>⬇ Baixar para Windows</b></a> ·
+  <a href="https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb"><b>⬇ Baixar para Linux</b></a> ·
+  <a href="https://dfdelivery.netlify.app/"><b>Conhecer o site</b></a>
+</p>
 
-- Desde 2026-11-07 **sem serviços de terceiros**: o botão "Mensagem" dos apps envia direto para o Telegram da Digital (bot com token/chat definidos na compilação do app). WhatsApp e e-mail ficam só como links (`wa.me` e `mailto:`) com a mensagem pronta, além de copiar número/endereço.
-- O campo `envio` (Web3Forms) foi removido do JSON; apps antigos que ainda o lêem simplesmente o ignoram.
+<p align="center">
+  100% grátis · Sem mensalidade · Sem comissão · Sem cartão de crédito · Linux e Windows
+</p>
 
-## Conteúdo de exemplo (`exemplos/`)
+---
 
-- `exemplos/delivery/<chave>.jpg`: fotos do cardápio de exemplo do DF Delivery (botão "Instalar conteúdo de exemplo" no app). Licença livre (CC0/domínio público) — créditos em `exemplos/delivery/CREDITOS.md`.
-- Cópia de referência: as fotos vão **embutidas no app** (`Delivery/src-tauri/recursos/exemplo/`); para trocar, substitua lá e aqui mantendo o nome (a chave).
+## Como funciona
 
-## Obsoleto
+1. **Instala e cadastra.** Instala o app no computador da loja e cadastra o cardápio. O guia mostra cada passo, na ordem certa.
+2. **O app sobe o teu site.** O próprio app instala o site de pedidos na tua hospedagem, com o teu domínio. Sem técnico.
+3. **Pedido chega, toca e imprime.** O cliente pede pelo site. No balcão, o alarme toca, a comanda sai e tu acompanhas cada etapa.
 
-- `servidor/contato.php`: endpoint de e-mail próprio, pensado para substituir o Web3Forms. Não é mais usado (as mensagens vão pelo Telegram). Pode ser apagado.
+<p align="center"><img src="divulgacao/pedidos.webp" alt="Quadro de pedidos do DF Delivery" width="90%"></p>
 
-## Atualizações dos apps (`atualizacoes`)
+## No balcão: nenhum pedido se perde
 
-- `atualizacoes.delivery`: `{ versao, data, notas[], linux, windows, pagina, importante }`. Os apps consultam este arquivo ao abrir e a cada 6 h; se `versao` for maior que a instalada, avisam no Início e em Sobre com as notas e o "como atualizar".
-- **Downloads com nome fixo** nas Releases deste repositório: `df-delivery_amd64.deb` (Ubuntu/Debian), `df-delivery.x86_64.rpm` (Fedora/openSUSE, em teste) e `df-delivery_x64-setup.exe` (Windows).
-- **Site oficial do DF Delivery:** https://dfdelivery.netlify.app/ (Netlify, projeto `dfdelivery`). O link `.../releases/latest/download/<arquivo>` sempre aponta para a versão mais nova.
-- **Publicar uma versão nova:** (1) criar a Release `vX.Y.Z` com os três arquivos (mesmos nomes); (2) só depois mudar `versao`, `data` e `notas` aqui.
-- **Testar o aviso sem publicar:** abrir o app com `DF_INFO_FONTE=<url de um JSON de teste>`.
+- **Alarme que toca até aceitar**, com a janela aberta, minimizada ou na bandeja.
+- **Quadro de pedidos com relógio** que fica amarelo e vermelho quando atrasa.
+- **Impressão automática por setor** (cozinha, chapa, bar), com impressora de reserva se uma falhar.
+- **Pedido de balcão, telefone e WhatsApp** lançado no mesmo lugar, com o mesmo cálculo do site.
+- **Internet caiu?** O app continua lançando e imprimindo no balcão; o que entrar pelo site aparece quando a conexão voltar.
+
+<p align="center"><img src="divulgacao/inicio.webp" alt="Painel do dia com faturamento e gráficos" width="90%"></p>
+
+## Para o teu cliente: pedir é fácil, pagar também
+
+- Cardápio com fotos e adicionais, busca e status de aberto ou fechado.
+- Endereço pelo CEP ou pelo nome da rua, já com bairro.
+- **PIX com QR Code já com o valor**, dinheiro com troco ou cartão na entrega.
+- Acompanha o pedido em tempo real e conversa com a loja pelo chat.
+- "Pedir de novo" com os mesmos adicionais, num toque.
+
+<p align="center"><img src="divulgacao/site.webp" alt="Site de pedidos da loja" width="90%"></p>
+
+## Vende mais sozinho
+
+- **Cupons** em % ou R$, frete grátis, só no primeiro pedido, por código.
+- **Promoções automáticas** por dia, horário, produto ou categoria.
+- **Cartão fidelidade** de carimbos, com recompensa aplicada sozinha.
+- **Frete por bairro ou por km**, com frete grátis acima de um valor.
+- **QR Code do cardápio** para imprimir e site preparado para o Google.
+- **Telegram no celular:** pedido novo com botões para aceitar e avançar, conversa com o cliente e abrir ou fechar a loja de onde estiveres.
+
+<table>
+  <tr>
+    <td width="33%"><img src="divulgacao/produtos.webp" alt="Cardápio no app"></td>
+    <td width="33%"><img src="divulgacao/impressoras.webp" alt="Impressoras e setores"></td>
+    <td width="33%"><img src="divulgacao/templates.webp" alt="Templates do site"></td>
+  </tr>
+  <tr>
+    <td align="center">Cardápio com ações rápidas</td>
+    <td align="center">Impressão por setor</td>
+    <td align="center">Templates e temas do site</td>
+  </tr>
+</table>
+
+## O cliente, os dados e o site são teus
+
+- **Tua hospedagem, teu domínio:** o site fica onde tu contratares, com o endereço da tua loja.
+- **Dados no teu computador:** clientes e pedidos ficam contigo, com cópia no site e backup automático todo dia.
+- **Sem comissão por pedido:** num faturamento de R$ 10.000 por mês, um marketplace pode levar mais de R$ 1.300. Aqui, R$ 0. O único custo é a hospedagem, paga direto ao teu provedor.
+
+---
+
+## Baixar e instalar
+
+| Sistema | Baixar | Como instalar |
+|---|---|---|
+| **Windows 10 e 11** | [df-delivery_x64-setup.exe](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_x64-setup.exe) | Dois cliques e **Instalar**. Se aparecer *"O Windows protegeu o computador"*, clique em **Mais informações → Executar assim mesmo**. |
+| **Ubuntu, Linux Mint e derivados** | [df-delivery_amd64.deb](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb) | Dois cliques e **Instalar**, ou no terminal: `sudo apt install ./df-delivery_amd64.deb` |
+| **Fedora, openSUSE e derivados** *(em teste)* | [df-delivery.x86_64.rpm](https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery.x86_64.rpm) | `sudo dnf install ./df-delivery.x86_64.rpm` |
+
+**Para o site de pedidos** precisas de uma hospedagem comum com PHP 8.1 ou mais (o banco pode ser SQLite, sem configurar nada, ou MySQL). O app instala o site sozinho; é só informar os dados da hospedagem.
+
+**Atualizações:** o app avisa sozinho quando sai versão nova, mostra o que mudou e como atualizar. Teus dados são preservados. Todas as versões ficam em [Releases](https://github.com/edersoncxs/digitalflying-info/releases).
+
+---
+
+## Por que é grátis?
+
+Estamos lançando o DF Delivery na Serra Gaúcha e queremos lojistas usando de verdade. **Quem instala a versão 1 usa para sempre, sem pagar nada**, e recebe correções e melhorias. Em troca, nos conta o que funciona e o que pode melhorar.
+
+**Lojista fundador:** quem usa a versão 1 agora ganha desconto na versão 2, que vai trazer app para celular, entregadores, pagamento online com baixa automática e mais automações.
+
+## Serviços opcionais, por orçamento
+
+Instalação e configuração completa · Identidade visual da loja · Template exclusivo do site · Funções sob medida.
+
+## Fala direto com quem fez
+
+Dúvida, ideia ou problema: fala com a equipe da Digital Flying, sem robô e sem fila. Também ajudamos na escolha da hospedagem.
+
+- **Site:** [dfdelivery.netlify.app](https://dfdelivery.netlify.app/#contato)
+- **WhatsApp:** [(48) 99127-9653](https://wa.me/5548991279653)
+- **E-mail:** [ederson.cxs@gmail.com](mailto:ederson.cxs@gmail.com)
+- **Dentro do app:** ícone de coração no menu lateral (Digital Flying — contato, PIX e sugestões)
+
+<p align="center"><sub>DF Delivery é um produto da <a href="https://digitalflying.netlify.app/">Digital Flying</a> · Caxias do Sul, RS</sub></p>
