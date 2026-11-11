@@ -99,7 +99,7 @@ jobs:
           else
             curl -fsSL -o /tmp/${{ matrix.arquivo }} "$BASE/${{ matrix.arquivo }}"
             dnf install -y /tmp/${{ matrix.arquivo }} | tail -3
-            dnf install -y -q xorg-x11-server-Xvfb dbus-x11 python3 webkit2gtk4.1-devel >/dev/null
+            dnf install -y -q xorg-x11-server-Xvfb dbus-x11 python3 webkitgtk6.0 >/dev/null
           fi
           B=$(command -v digital-flying-delivery) || { echo 'Executável não instalado'; exit 1; }
           echo "Instalado em $B"; ls /usr/share/applications | grep -i delivery
