@@ -24,3 +24,10 @@ if (-not (Test-Path $driver)) { throw 'Driver não encontrado no download' }
 "DF_WEBDRIVER=$driver" >> $env:GITHUB_ENV
 & $driver --version
 if ($LASTEXITCODE -ne 0) { throw 'Não foi possível executar o driver' }
+
+# Runner elevado: o WebView2 ignora overrides por variável de ambiente/HKCU.
+# Política limitada a este executável, somente na máquina descartável do CI.
+if ($env:GITHUB_ACTIONS -ne 'true') { throw 'Política de teste permitida somente no GitHub Actions' }
+$policy = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
+New-Item -Path $policy -Force | Out-Null
+New-ItemProperty -Path $policy -Name 'digital-flying-delivery.exe' -PropertyType String -Value '--remote-debugging-port=9222' -Force | Out-Null

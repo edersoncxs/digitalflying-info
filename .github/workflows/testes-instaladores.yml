@@ -55,6 +55,12 @@ jobs:
       - name: Configuração inicial e produtos no aplicativo instalado
         shell: pwsh
         run: python .github/tests/interface.py --app "$env:EXE" --driver "$env:DF_WEBDRIVER" --sistema windows --out prints
+      - name: Remover política temporária de automação
+        if: always()
+        shell: pwsh
+        run: |
+          $policy = 'HKLM:\SOFTWARE\Policies\Microsoft\Edge\WebView2\AdditionalBrowserArguments'
+          if (Test-Path $policy) { Remove-ItemProperty -Path $policy -Name 'digital-flying-delivery.exe' -ErrorAction SilentlyContinue }
       - name: Desinstalar
         shell: pwsh
         run: |
