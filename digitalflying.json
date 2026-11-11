@@ -26,12 +26,13 @@
   },
   "atualizacoes": {
     "delivery": {
-      "versao": "1.0.1",
-      "data": "2026-11-09",
+      "versao": "1.0.2",
+      "data": "2026-11-11",
       "notas": [
-        "Agora funciona no Linux Mint 21, Ubuntu 22.04 e Debian 12.",
-        "Novo: inscrição de lojista fundador (desconto na versão 2) direto no app.",
-        "Estatísticas de uso anônimas (só versão e sistema; dá para desligar em Sobre o app)."
+        "Instalação e sincronização por FTP compatíveis com mais hospedagens.",
+        "Lista de pastas da conta FTP para escolher o destino do site.",
+        "Registro local de erros e comunicação para facilitar o suporte.",
+        "Configuração inicial valida os dados em cada etapa antes de avançar."
       ],
       "linux": "https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_amd64.deb",
       "windows": "https://github.com/edersoncxs/digitalflying-info/releases/latest/download/df-delivery_x64-setup.exe",
