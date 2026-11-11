@@ -67,6 +67,8 @@ class Interface:
         if os.name == 'nt':
             # O app define seu próprio perfil WebView2: anexar à instância real,
             # sem depender do DevToolsActivePort em perfil criado pelo driver.
+            subprocess.run(['taskkill', '/F', '/T', '/IM', self.app.name], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            time.sleep(1)
             ambiente = os.environ.copy()
             ambiente['WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS'] = '--remote-debugging-port=9222'
             self.app_processo = subprocess.Popen([str(self.app)], env=ambiente,
@@ -77,8 +79,11 @@ class Interface:
                     with urllib.request.urlopen('http://127.0.0.1:9222/json/version', timeout=2):
                         break
                 except OSError:
+                    if self.app_processo.poll() is not None:
+                        raise RuntimeError('App encerrou antes da automação, código: ' + str(self.app_processo.returncode))
                     time.sleep(.3)
             else:
+                subprocess.run(['powershell', '-NoProfile', '-Command', "Get-CimInstance Win32_Process | Where-Object Name -like '*webview*' | Select-Object Name,CommandLine | Format-List"], stdout=self.erros_driver, stderr=subprocess.STDOUT)
                 raise TimeoutError('WebView2 do app não abriu a porta de automação')
             caps = {'browserName': 'webview2', 'ms:edgeChromium': True,
                     'ms:edgeOptions': {'debuggerAddress': '127.0.0.1:9222'}}
@@ -89,6 +94,7 @@ class Interface:
         self.wd('POST', f'/session/{self.sessao}/timeouts',
                 {'script': 30000, 'pageLoad': 60000, 'implicit': 0})
         self.esperar("!!document.body && !!window.__TAURI_INTERNALS__", 'interface nativa do app')
+        self.esperar("!document.querySelector('.df-abertura')", 'fim da animação de abertura', 45)
 
     def js(self, script, *args):
         return self.wd('POST', f'/session/{self.sessao}/execute/sync', {'script': script, 'args': list(args)})
@@ -133,6 +139,7 @@ class Interface:
             self.esperar(expr, 'campo recusado ' + campo)
 
     def foto(self, nome):
+        time.sleep(.5)  # Aguardar a pintura após a atualização do DOM.
         codigo = self.js("const e=document.querySelector('.codigo-rec');if(!e)return null;const t=e.textContent;e.textContent='Código de teste ocultado';return t;")
         try:
             data = self.wd('GET', f'/session/{self.sessao}/screenshot')
@@ -161,7 +168,7 @@ class Interface:
             self.sessao = None
         # O app pode continuar na bandeja; encerrar somente o executável de teste.
         if os.name == 'nt':
-            subprocess.run(['taskkill', '/F', '/IM', self.app.name], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            subprocess.run(['taskkill', '/F', '/T', '/IM', self.app.name], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         else:
             for item in Path('/proc').iterdir():
                 if not item.name.isdigit():
