@@ -65,8 +65,23 @@ class Interface:
             else:
                 raise TimeoutError('Driver não respondeu')
         if os.name == 'nt':
+            # O app define seu próprio perfil WebView2: anexar à instância real,
+            # sem depender do DevToolsActivePort em perfil criado pelo driver.
+            ambiente = os.environ.copy()
+            ambiente['WEBVIEW2_ADDITIONAL_BROWSER_ARGUMENTS'] = '--remote-debugging-port=9222'
+            self.app_processo = subprocess.Popen([str(self.app)], env=ambiente,
+                                                 stdout=self.erros_driver, stderr=subprocess.STDOUT)
+            fim = time.monotonic() + 45
+            while time.monotonic() < fim:
+                try:
+                    with urllib.request.urlopen('http://127.0.0.1:9222/json/version', timeout=2):
+                        break
+                except OSError:
+                    time.sleep(.3)
+            else:
+                raise TimeoutError('WebView2 do app não abriu a porta de automação')
             caps = {'browserName': 'webview2', 'ms:edgeChromium': True,
-                    'ms:edgeOptions': {'binary': str(self.app)}}
+                    'ms:edgeOptions': {'debuggerAddress': '127.0.0.1:9222'}}
         else:
             caps = {'webkitgtk:browserOptions': {'binary': str(self.app)}}
         s = self.wd('POST', '/session', {'capabilities': {'alwaysMatch': caps}})
