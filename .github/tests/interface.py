@@ -94,7 +94,7 @@ class Interface:
         self.wd('POST', f'/session/{self.sessao}/timeouts',
                 {'script': 30000, 'pageLoad': 60000, 'implicit': 0})
         self.esperar("!!document.body && !!window.__TAURI_INTERNALS__", 'interface nativa do app')
-        self.esperar("!document.querySelector('.df-abertura')", 'fim da animação de abertura', 45)
+        self.esperar("!document.querySelector('.abertura, .df-abertura')", 'fim da animação de abertura', 45)
 
     def js(self, script, *args):
         return self.wd('POST', f'/session/{self.sessao}/execute/sync', {'script': script, 'args': list(args)})
