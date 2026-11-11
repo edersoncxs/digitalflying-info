@@ -19,7 +19,7 @@ Campos opcionais permanecem opcionais. Estes testes não definem novos requisito
 
 Actions → Testes dos instaladores → Run workflow. Informe uma tag publicada (ex.: v1.0.2), ou deixe vazia para resolver a mais recente uma única vez. Todos os ambientes usam a mesma Release. Uma nova Release publicada também dispara a rotina.
 
-Windows usa o Microsoft Edge WebDriver correspondente ao WebView2 instalado. Linux usa WebKitWebDriver e Xvfb; no Fedora o executável do controlador é distribuído em webkitgtk6.0. O app continua usando suas bibliotecas originais.
+Windows usa o Microsoft Edge WebDriver correspondente ao WebView2 instalado. Linux usa WebKitWebDriver e Xvfb; no Fedora o executável do controlador é distribuído em webkitgtk6.0. O app continua usando suas bibliotecas originais. O runner Windows elevado usa uma política HKLM temporária limitada ao executável para habilitar a conexão do controlador; a política é removida mesmo em caso de falha. Nenhuma configuração de automação é aplicada ao instalador ou ao computador do usuário.
 
 Os sete ambientes são Windows, Ubuntu 22.04 e 24.04, Mint 21.3 e 22, Debian 12 e Fedora 41. Há também um job de seleção de versão.
 
